@@ -1,11 +1,4 @@
-units = {
-        "metric": "m",
-        "volume": "m^3",
-        "density": "kg/m^3",
-        "weight": "t",
-        "torque": "N*m",
-        "money": "$"
-    }
+from dataset.units import units
 
 iscwsa_r4 = {
     "units": units,
@@ -120,8 +113,6 @@ iscwsa_r4 = {
     },
     "mdStep": 30
 }
-
-ref_iscwsa_r4 = {'sh': 5.202, 'sl': 14.271, 'sa': 3.686, 'rhl': 0.0, 'rha': 0.524, 'rla': 0.0, 'ds': .01, 'dr': .01}
 
 hla_iscwsa_r4 = [{'sh':0.0000, 'sl':0.0000, 'sa':0.0000},
                 {'sh':0.0537, 'sl':0.0537, 'sa':0.3504},
