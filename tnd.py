@@ -2,9 +2,9 @@ import requests
 import json
 import numpy as np
 from models.tkn import get_token
-from dataset.ac_iscwsa_r4 import task
+from dataset.tnd_hor_well import task
 
-url = 'http://localhost:8000/calc/acscan'
+url = 'http://localhost:8000/calc/tnd'
 
 tkn = "Bearer " + get_token()
 headers = {

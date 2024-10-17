@@ -2,9 +2,9 @@ import requests
 import json
 import numpy as np
 from models.tkn import get_token
-from dataset.iscwsa_eou_r0 import iscwsa1, ref_iscwsa1
-from dataset.iscwsa_eou_r0 import iscwsa3_leg1, ref_iscwsa3_leg1, iscwsa3_leg2, ref_iscwsa3_leg2, iscwsa3_leg3, ref_iscwsa3_leg3
-from dataset.iscwsa_eou_r4 import iscwsa_r4, hla_iscwsa_r4
+from dataset.eou_iscwsa_r0 import iscwsa1, ref_iscwsa1
+from dataset.eou_iscwsa_r0 import iscwsa3_leg1, ref_iscwsa3_leg1, iscwsa3_leg2, ref_iscwsa3_leg2, iscwsa3_leg3, ref_iscwsa3_leg3
+from dataset.eou_iscwsa_r4 import iscwsa_r4, hla_iscwsa_r4
 from models.ac import assert_eou, plot_hla
 
 url = 'http://localhost:8000/calc/wellunc'
