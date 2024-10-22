@@ -219,8 +219,11 @@ task = {
         "slotUncertainty": {"ns": 0, "ew": 0, "tvd": 0},
         "outerDiameter": 0.6096
     },
+  "offset_scan_step": 1.0,
   "sigma": 3.5,
-  "mdStep": 30
+  "scan_method": "ISCWSA",
+  "osf_scan": "standard",
+  "global_error": False
 }
 
 ac_benchmark =[{'md':0.0000, 'ctc':10.0000, 'osf':5.1074},

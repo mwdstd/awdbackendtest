@@ -43,3 +43,14 @@ def plot_hla(cnev, md, inc, az, hla_ref_dict, case_id):
     plt.title(f'{case_id}')
     plt.legend()
     plt.show()
+
+
+def plot_osf(osf_calc, osf_bnch, case_id):
+    plt.figure()
+    plt.plot(osf_calc[:, 0], osf_calc[:, 1], 'r-', label='Calculated OSF')
+    plt.plot(osf_bnch[:, 0], osf_bnch[:, 1], 'go', label='Benchmark')
+    plt.xlabel('MD, m')
+    plt.ylabel('OSF, -')
+    plt.title(f'{case_id}')
+    plt.legend()
+    plt.show()
