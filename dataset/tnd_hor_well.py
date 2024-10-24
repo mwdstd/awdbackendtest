@@ -202,7 +202,7 @@ task = {
     "bopPressure": 0
   },
   "drillstring": {
-    "drillstring": [
+    "tubular": [
       {"length": 3075, "element": pipe},
       {"length": 85, "element": hwdp},
       {"length": 255, "element": pipe},

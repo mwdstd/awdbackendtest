@@ -17,11 +17,11 @@ def tnd_plot(task):
     response = requests.post(url, headers=headers, data=json.dumps(task)).json()
     block_weight = 37  # tons
 
-    dpt = [pnt['md'] for pnt in response]
-    so = [pnt['dragRih'] + block_weight for pnt in response]
-    pu = [pnt['dragPoh'] + block_weight for pnt in response]
-    ro = [pnt['dragRot'] + block_weight for pnt in response]
-    tq = [pnt['torque'] / 1000 for pnt in response]
+    dpt = [pnt['md'] for pnt in response['graph']]
+    so = [pnt['dragRih'] + block_weight for pnt in response['graph']]
+    pu = [pnt['dragPoh'] + block_weight for pnt in response['graph']]
+    ro = [pnt['dragRot'] + block_weight for pnt in response['graph']]
+    tq = [pnt['torque'] / 1000 for pnt in response['graph']]
 
     dpt_msr = [pnt['md'] for pnt in drillmech]
     so_msr = [pnt['so'] for pnt in drillmech]
