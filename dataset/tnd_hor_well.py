@@ -219,7 +219,7 @@ task = {
     "torqueOnBit": 0,
     "flowRate": 0,
     "pipeVelocity": 0,
-    "rpm": 0
+    "rpm": 60
   },
   "mudWeight": 1150,
   "mdStep": 10

@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from models.tkn import get_token
 from dataset.tnd_hor_well import task, drillmech
 
-url = 'http://localhost:8000/calc/tnd'
 
 tkn = "Bearer " + get_token()
 headers = {
@@ -13,7 +12,8 @@ headers = {
     'Content-Type': 'application/json'
 }
 
-def tnd_plot(task):
+def broomstick_plot(task):
+    url = 'http://localhost:8000/calc/tnd_broomstick'
     response = requests.post(url, headers=headers, data=json.dumps(task)).json()
     block_weight = 37  # tons
 
@@ -45,4 +45,41 @@ def tnd_plot(task):
 
     plt.show()
 
-tnd_plot(task)
+def snapshot_plot(task, scenario):
+    url = 'http://localhost:8000/calc/tnd_snapshot'
+    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+
+    def plot_scenario(response):
+        dpt = [pnt['md'] for pnt in response[scenario]]
+        drag = [pnt['drag'] for pnt in response[scenario]]
+        torq = [pnt['torque'] / 1000 for pnt in response[scenario] if 'torque' in pnt]
+        sfrc = [pnt['sideforce'] / 9.81 / 1000 for pnt in response[scenario]]
+        sbkl = [-pnt['bucklingSin'] if pnt['bucklingSin'] is not None else None for pnt in response[scenario]]
+        hbkl = [-pnt['bucklingHel'] if pnt['bucklingHel'] is not None else None for pnt in response[scenario]]
+
+        fig1, ax = plt.subplots()
+        ax.plot(drag, dpt, 'b-')
+        # ax.plot(sfrc, dpt, 'b--')
+        ax.plot(sbkl, dpt, 'y-')
+        ax.plot(hbkl, dpt, 'r-')
+        ax.set_xlabel('Drag, t')
+        ax.set_ylabel('MD, m')
+        plt.gca().invert_yaxis()
+        ax.grid(True)
+
+        if len(torq) > 0:
+            fig2, ax = plt.subplots()
+            ax.plot(torq, dpt, 'b-')
+            ax.set_xlabel('Torque, kN.m')
+            ax.set_ylabel('MD, m')
+            plt.gca().invert_yaxis()
+            ax.grid(True)
+
+        plt.title(f'{scenario}')
+        # plt.legend()
+        plt.show()
+
+    plot_scenario(response)
+
+# scenario: runIn, pullOut, slide, rotor, reamUp
+snapshot_plot(task, 'rotor')
