@@ -47,7 +47,7 @@ bha = {
           "criticalTorque": 3.6e4,
           "yieldPoint": 9.3e8,
           "linearWeight": 148.0,
-          "pressureDrop": 150.e5
+          "pressureDrop": 123.e5
         }
 
 task = {
