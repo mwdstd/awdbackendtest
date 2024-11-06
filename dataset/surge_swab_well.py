@@ -110,10 +110,8 @@ task = {
     "bitHsi": 2.32
   },
   "mdStep": 200,
-  "mdStop": 3790,
+  "topDepth": 3790,
   "mud": {"mw": 1380, "ty": 3.2, "k": 0.28, "m": 0.8},
-  "cuttings": {"density": 2500, "concentration": 0.0},
-  "mudsystem": [{"id": 0.0635, "length": 0.1}],
   "pipeVelocity": 0
 }
 

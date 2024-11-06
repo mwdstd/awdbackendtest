@@ -43,7 +43,8 @@ def snapshot_plot(task):
     dp = []
     for vp, _ in dp_vp:
         task["pipeVelocity"] = vp
-        response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+        response = requests.post(url, headers=headers, data=json.dumps(task))
+        response = response.json()
         dp += [response["graph"][0]["pressureDrop"] / 1e5]
 
     labels = [str(vp) for vp, _ in dp_vp]
