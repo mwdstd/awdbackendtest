@@ -82,5 +82,5 @@ def snapshot_plot(task, scenario):
     plot_scenario(response)
 
 # scenario: runIn, pullOut, slide, rotor, reamUp
-# snapshot_plot(task, 'rotor')
+snapshot_plot(task, 'slide')
 broomstick_plot(task)

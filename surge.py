@@ -35,32 +35,21 @@ def broomstick_plot(task):
     ax.set_xlabel('Drillstring Velocity, m/s')
     ax.set_ylabel('ΔPressure, bar')
     ax.legend()
-    plt.show()
 
 
 def snapshot_plot(task):
-    url = 'http://localhost:8000/calc/surge_swab_broomstick'
-    dp = []
-    for vp, _ in dp_vp:
-        task["pipeVelocity"] = vp
-        response = requests.post(url, headers=headers, data=json.dumps(task))
-        response = response.json()
-        dp += [response["graph"][0]["pressureDrop"] / 1e5]
+    url = 'http://localhost:8000/calc/surge_swab_snapshot'
+    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    dp_vs_md = np.array([[pt["md"], pt["pressureDrop"] / 1e5] for pt in response["graph"]])
 
-    labels = [str(vp) for vp, _ in dp_vp]
-    ticks = np.arange(len(dp))
-    bar_width = 0.35
-
-    fig, ax = plt.subplots()
-    ax.bar(ticks, dp, width=bar_width, color='r', label='Calculated')
-    ax.bar(ticks + bar_width, [dp for _, dp in dp_vp], width=bar_width, color='g', label='Measured')
-    ax.set_xticks(ticks + bar_width / 2)
-    ax.set_xticklabels(labels)
-    ax.set_title('Annulus Δ Pressure due to Surge/Swab')
-    ax.set_xlabel('Drillstring Velocity, m/s')
-    ax.set_ylabel('ΔPressure, bar')
-    ax.legend()
-    plt.show()
+    fig1, ax = plt.subplots()
+    ax.plot(dp_vs_md[:, 1], dp_vs_md[:, 0], 'b-')
+    ax.set_xlabel('Pressure Drop, atm')
+    ax.set_ylabel('Measured Depth, m')
+    plt.gca().invert_yaxis()
+    ax.grid(True)
 
 
+snapshot_plot(task)
 broomstick_plot(task)
+plt.show()

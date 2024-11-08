@@ -112,7 +112,7 @@ task = {
   "mdStep": 200,
   "topDepth": 3790,
   "mud": {"mw": 1380, "ty": 3.2, "k": 0.28, "m": 0.8},
-  "pipeVelocity": 0
+  "pipeVelocity": 0.45
 }
 
 # drillstring velocity (m/s) vs surge/swab pressure (bar)
