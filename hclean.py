@@ -28,8 +28,7 @@ def hole_cleaning_plot(task):
     ax.set_ylabel('Cutting Bed')
     # plt.gca().invert_yaxis()
 
-    plt.show()
-
 
 if __name__ == '__main__':
     hole_cleaning_plot(task)
+    plt.show()

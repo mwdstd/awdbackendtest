@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import models.api as api
 from dataset.eou_iscwsa_r0 import iscwsa1, ref_iscwsa1
 from dataset.eou_iscwsa_r0 import iscwsa3_leg1, ref_iscwsa3_leg1, iscwsa3_leg2, ref_iscwsa3_leg2, iscwsa3_leg3, ref_iscwsa3_leg3
@@ -33,3 +34,4 @@ if __name__ == '__main__':
     eou_test(iscwsa3_leg2, ref_iscwsa3_leg2, 'ISCWSA3 Leg2')
     eou_test(iscwsa3_leg3, ref_iscwsa3_leg3, 'ISCWSA3 Leg3')
     eou_plot(iscwsa_r4, hla_iscwsa_r4, 'ISCWSA Rev4 EOU Test')
+    plt.show()

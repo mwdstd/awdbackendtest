@@ -24,8 +24,7 @@ def broomstick_plot(task, spp, ecd, esd):
     ax.plot(ecd_measure[:, 0], ecd_measure[:, 1], 'go-')
     # plt.gca().invert_yaxis()
 
-    plt.show()
-
 
 if __name__ == '__main__':
     broomstick_plot(task, spp, ecd, esd)
+    plt.show()

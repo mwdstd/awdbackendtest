@@ -14,8 +14,8 @@ def velmax_plot(task):
     plt.ylabel('Max drill pipe velocity, m/s')
     plt.legend()
     plt.ylim(bottom=0.)
-    plt.show()
 
 
 if __name__ == '__main__':
     velmax_plot(task)
+    plt.show()

@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import models.api as api
 from dataset.ac_iscwsa_r4 import task, ac_benchmark
 from models.ac import plot_osf
@@ -13,3 +14,4 @@ def acscan_plot(task, case_id):
 
 if __name__ == '__main__':
     acscan_plot(task, 'ISCWSA offset well #3')
+    plt.show()

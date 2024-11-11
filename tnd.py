@@ -67,7 +67,6 @@ def snapshot_plot(task, scenario):
 
         plt.title(f'{scenario}')
         # plt.legend()
-        plt.show()
 
     plot_scenario(response)
 
@@ -76,3 +75,4 @@ if __name__ == '__main__':
     # scenario: runIn, pullOut, slide, rotor, reamUp
     snapshot_plot(task, 'slide')
     broomstick_plot(task)
+    plt.show()

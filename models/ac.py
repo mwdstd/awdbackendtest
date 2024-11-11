@@ -42,7 +42,6 @@ def plot_hla(cnev, md, inc, az, hla_ref_dict, case_id):
     plt.ylabel('Semi-axis, m')
     plt.title(f'{case_id}')
     plt.legend()
-    plt.show()
 
 
 def plot_osf(osf_calc, osf_bnch, case_id):
@@ -53,4 +52,3 @@ def plot_osf(osf_calc, osf_bnch, case_id):
     plt.ylabel('OSF, -')
     plt.title(f'{case_id}')
     plt.legend()
-    plt.show()
