@@ -1,25 +1,14 @@
-import requests
-import json
 import numpy as np
-from models.tkn import get_token
-from dataset.surge_swab_well import task, dp_vp
 import matplotlib.pyplot as plt
-
-
-tkn = "Bearer " + get_token()
-headers = {
-    'accept': 'application/json',
-    'Authorization': tkn,
-    'Content-Type': 'application/json'
-}
+import models.api as api
+from dataset.surge_swab_well import task, dp_vp
 
 
 def broomstick_plot(task):
-    url = 'http://localhost:8000/calc/surge_swab_broomstick'
     dp = []
     for vp, _ in dp_vp:
         task["pipeVelocity"] = vp
-        response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+        response = api.post('surge_swab_broomstick', task)
         dp += [response["graph"][0]["pressureDrop"] / 1e5]
 
     labels = [str(vp) for vp, _ in dp_vp]
@@ -38,8 +27,8 @@ def broomstick_plot(task):
 
 
 def snapshot_plot(task):
-    url = 'http://localhost:8000/calc/surge_swab_snapshot'
-    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    task['snapshotDepth'] = task['topDepth']
+    response = api.post('surge_swab_snapshot', task)
     dp_vs_md = np.array([[pt["md"], pt["pressureDrop"] / 1e5] for pt in response["graph"]])
 
     fig1, ax = plt.subplots()
@@ -50,6 +39,7 @@ def snapshot_plot(task):
     ax.grid(True)
 
 
-snapshot_plot(task)
-broomstick_plot(task)
-plt.show()
+if __name__ == '__main__':
+    snapshot_plot(task)
+    broomstick_plot(task)
+    plt.show()

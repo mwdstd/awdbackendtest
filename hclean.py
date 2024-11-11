@@ -1,22 +1,11 @@
-import requests
-import json
 import numpy as np
-from models.tkn import get_token
-from dataset.holecleaning import task, hcl_ref
 import matplotlib.pyplot as plt
-
-
-tkn = "Bearer " + get_token()
-headers = {
-    'accept': 'application/json',
-    'Authorization': tkn,
-    'Content-Type': 'application/json'
-}
+import models.api as api
+from dataset.holecleaning import task, hcl_ref
 
 
 def hole_cleaning_plot(task):
-    url = 'http://localhost:8000/calc/holeclean_stat'
-    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    response = api.post('holeclean_stat', task)
 
     v_ref = np.array([[pt['md'], pt['v_min']] for pt in hcl_ref])
     c_ref = np.array([[pt['md'], pt['c_bed']] for pt in hcl_ref])
@@ -42,4 +31,5 @@ def hole_cleaning_plot(task):
     plt.show()
 
 
-hole_cleaning_plot(task)
+if __name__ == '__main__':
+    hole_cleaning_plot(task)

@@ -1,20 +1,10 @@
-import requests
-import json
 import matplotlib.pyplot as plt
-from models.tkn import get_token
+import models.api as api
 from dataset.tnd_hor_well import task, drillmech
 
 
-tkn = "Bearer " + get_token()
-headers = {
-    'accept': 'application/json',
-    'Authorization': tkn,
-    'Content-Type': 'application/json'
-}
-
 def broomstick_plot(task):
-    url = 'http://localhost:8000/calc/tnd_broomstick'
-    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    response = api.post('tnd_broomstick', task)
     block_weight = 37  # tons
 
     dpt = [pnt['md'] for pnt in response['graph']]
@@ -45,9 +35,9 @@ def broomstick_plot(task):
 
     plt.show()
 
+
 def snapshot_plot(task, scenario):
-    url = 'http://localhost:8000/calc/tnd_snapshot'
-    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    response = api.post('tnd_snapshot', task)
 
     def plot_scenario(response):
         dpt = [pnt['md'] for pnt in response[scenario]]
@@ -81,6 +71,8 @@ def snapshot_plot(task, scenario):
 
     plot_scenario(response)
 
-# scenario: runIn, pullOut, slide, rotor, reamUp
-snapshot_plot(task, 'slide')
-broomstick_plot(task)
+
+if __name__ == '__main__':
+    # scenario: runIn, pullOut, slide, rotor, reamUp
+    snapshot_plot(task, 'slide')
+    broomstick_plot(task)

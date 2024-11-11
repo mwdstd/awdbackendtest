@@ -1,22 +1,11 @@
-import requests
-import json
 import numpy as np
-from models.tkn import get_token
-from dataset.hydr_hor_well import task, spp, ecd, esd
 import matplotlib.pyplot as plt
-
-
-tkn = "Bearer " + get_token()
-headers = {
-    'accept': 'application/json',
-    'Authorization': tkn,
-    'Content-Type': 'application/json'
-}
+import models.api as api
+from dataset.hydr_hor_well import task, spp, ecd, esd
 
 
 def broomstick_plot(task, spp, ecd, esd):
-    url = 'http://localhost:8000/calc/hydr_broomstick'
-    response = requests.post(url, headers=headers, data=json.dumps(task)).json()
+    response = api.post('hydr_broomstick', task)
 
     spp_model = np.array([[pt['md'], pt['pressurePipe'] / 1e5] for pt in response['graph']])
     spp_measure = np.array([[pt['md'], pt['spp']] for pt in spp])
@@ -38,4 +27,5 @@ def broomstick_plot(task, spp, ecd, esd):
     plt.show()
 
 
-broomstick_plot(task, spp, ecd, esd)
+if __name__ == '__main__':
+    broomstick_plot(task, spp, ecd, esd)
