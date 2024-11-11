@@ -20,17 +20,22 @@ def broomstick_plot(task):
     tq_msr = [pnt['tq'] for pnt in drillmech]
 
     fig1, ax = plt.subplots()
-    ax.plot(pu, dpt, 'r--')
-    ax.plot(pu_msr, dpt_msr, 'ro')
-    ax.plot(so, dpt, 'b--')
-    ax.plot(so_msr, dpt_msr, 'bo')
-    ax.plot(ro, dpt, 'k--')
-    ax.plot(ro_msr, dpt_msr, 'ko')
+    ax.plot(pu, dpt, 'r--', label='Pull-out calculated')
+    ax.plot(pu_msr, dpt_msr, 'ro', label='Pull-out meaured')
+    ax.plot(so, dpt, 'b--', label='Slack-off calculated')
+    ax.plot(so_msr, dpt_msr, 'bo', label='Slack-off measured')
+    ax.plot(ro, dpt, 'k--', label='Rotation calculated')
+    ax.plot(ro_msr, dpt_msr, 'ko', label='Rotation measured')
+    ax.set_xlabel('Drag, t')
+    ax.set_ylabel('MD, m')
     plt.gca().invert_yaxis()
+    ax.legend()
 
     fig2, ax = plt.subplots()
     ax.plot(tq, dpt, 'r--')
     ax.plot(tq_msr, dpt_msr, 'ro')
+    ax.set_xlabel('Torque, kN.m')
+    ax.set_ylabel('MD, m')
     plt.gca().invert_yaxis()
 
     plt.show()
@@ -48,14 +53,15 @@ def snapshot_plot(task, scenario):
         hbkl = [-pnt['bucklingHel'] if pnt['bucklingHel'] is not None else None for pnt in response[scenario]]
 
         fig1, ax = plt.subplots()
-        ax.plot(drag, dpt, 'b-')
+        ax.plot(drag, dpt, 'b-', label='Drag')
         # ax.plot(sfrc, dpt, 'b--')
-        ax.plot(sbkl, dpt, 'y-')
-        ax.plot(hbkl, dpt, 'r-')
+        ax.plot(sbkl, dpt, 'y-', label='Sin buckling limit')
+        ax.plot(hbkl, dpt, 'r-', label='Helical buckling limit')
         ax.set_xlabel('Drag, t')
         ax.set_ylabel('MD, m')
         plt.gca().invert_yaxis()
         ax.grid(True)
+        ax.legend()
 
         if len(torq) > 0:
             fig2, ax = plt.subplots()
@@ -66,7 +72,6 @@ def snapshot_plot(task, scenario):
             ax.grid(True)
 
         plt.title(f'{scenario}')
-        # plt.legend()
 
     plot_scenario(response)
 

@@ -13,20 +13,20 @@ def hole_cleaning_plot(task):
     c_cal = np.array([[pt['md'], pt['cuttings']] for pt in response['graph']])
 
     fig1, ax = plt.subplots()
-    ax.plot(v_cal[:, 0], v_cal[:, 1], 'r-')
-    ax.plot(v_ref[:, 0], v_ref[:, 1], 'go-')
+    ax.plot(v_cal[:, 0], v_cal[:, 1], 'r-', label='Calculated')
+    ax.plot(v_ref[:, 0], v_ref[:, 1], 'go-', label='Measured')
     ax.set_title('Minimal mud annular velocity')
     ax.set_xlabel('Measured Depth, m')
     ax.set_ylabel('Minimal velocity, m/s')
-    # plt.gca().invert_yaxis()
+    ax.legend()
 
     fig2, ax = plt.subplots()
-    ax.plot(c_cal[:, 0], c_cal[:, 1], 'r-')
-    ax.plot(c_ref[:, 0], c_ref[:, 1], 'go-')
+    ax.plot(c_cal[:, 0], c_cal[:, 1], 'r-', label='Calculated')
+    ax.plot(c_ref[:, 0], c_ref[:, 1], 'go-', label='Measured')
     ax.set_title('Cutting Bed')
     ax.set_xlabel('Measured Depth, m')
     ax.set_ylabel('Cutting Bed')
-    # plt.gca().invert_yaxis()
+    ax.legend()
 
 
 if __name__ == '__main__':
