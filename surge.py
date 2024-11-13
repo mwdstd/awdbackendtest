@@ -27,7 +27,6 @@ def broomstick_plot(task):
 
 
 def snapshot_plot(task):
-    task['snapshotDepth'] = task['topDepth']
     response = api.post('surge_swab_snapshot', task)
     dp_vs_md = np.array([[pt["md"], pt["pressureDrop"] / 1e5] for pt in response["graph"]])
 

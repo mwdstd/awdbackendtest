@@ -94,7 +94,7 @@ task = {
   },
   "drillstring": {
     "tubular": [
-      {"length": 1032.5, "element": pipe1},
+      {"length": 1041.1, "element": pipe1},
       {"length": 5.7, "element": hwdc1},
       {"length": 2.4, "element": hwdc2},
       {"length": 1518.4, "element": pipe1},
