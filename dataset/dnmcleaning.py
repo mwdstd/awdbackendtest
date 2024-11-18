@@ -1,3 +1,4 @@
+import copy
 from dataset.units import units
 
 task = {
@@ -57,34 +58,41 @@ task = {
   "cuttingFlow": [(30.5, 0)],
   "flowRate": 0.022716,
   "rop": 0.004088,
-  "rpm": 50,
+  "rpm": 0,
   "timeStep": 4,
-  "circulationTime": 1000,
+  "circulationTime": 1620,
   "timeData": True
 }
 
+# lab test 1
+task_1_0 = copy.deepcopy(task)
+task_1_1 = copy.deepcopy(task_1_0)
+task_1_1["circulationTime"] = 740
+task_1_1["rpm"] = 50
+task_1_2 = copy.deepcopy(task_1_1)
+task_1_2["circulationTime"] = 1140
+task_1_2["rop"] = 0
 
-hcl_ref = [{"md":145.8, "v_min":0.63, "c_bed":0.11},
-            {"md":291.7, "v_min":0.64, "c_bed":0.12},
-            {"md":437.5, "v_min":0.70, "c_bed":0.15},
-            {"md":583.3, "v_min":0.85, "c_bed":0.20},
-            {"md":729.2, "v_min":0.98, "c_bed":0.23},
-            {"md":875.0, "v_min":1.14, "c_bed":0.26},
-            {"md":1020.8, "v_min":1.23, "c_bed":0.27},
-            {"md":1166.7, "v_min":1.21, "c_bed":0.27},
-            {"md":1312.5, "v_min":1.16, "c_bed":0.26},
-            {"md":1458.3, "v_min":1.08, "c_bed":0.25},
-            {"md":1604.2, "v_min":1.02, "c_bed":0.22},
-            {"md":1750.0, "v_min":0.97, "c_bed":0.21},
-            {"md":1895.8, "v_min":1.01, "c_bed":0.22},
-            {"md":2041.7, "v_min":1.16, "c_bed":0.24},
-            {"md":2187.5, "v_min":1.33, "c_bed":0.28},
-            {"md":2333.3, "v_min":1.42, "c_bed":0.29},
-            {"md":2479.2, "v_min":1.43, "c_bed":0.30},
-            {"md":2625.0, "v_min":1.43, "c_bed":0.30},
-            {"md":2770.8, "v_min":1.42, "c_bed":0.29},
-            {"md":2916.7, "v_min":1.40, "c_bed":0.29},
-            {"md":3062.5, "v_min":1.44, "c_bed":0.30},
-            {"md":3208.3, "v_min":1.49, "c_bed":0.31},
-            {"md":3354.2, "v_min":1.49, "c_bed":0.31},
-            {"md":3500.0, "v_min":1.67, "c_bed":0.26}]
+# lab test 2
+task_2_0 = copy.deepcopy(task)
+task_2_0["circulationTime"] = 1400
+task_2_1 = copy.deepcopy(task_2_0)
+task_2_1["circulationTime"] = 840
+task_2_1["rpm"] = 90
+task_2_2 = copy.deepcopy(task_2_1)
+task_2_2["circulationTime"] = 1200
+task_2_2["rop"] = 0
+
+# lab test 3
+task_3_0 = copy.deepcopy(task)
+task_3_0["circulationTime"] = 1800
+task_3_0["cuttings"]["porosity"] = 0.39
+task_3_1 = copy.deepcopy(task_3_0)
+task_3_1["circulationTime"] = 900
+task_3_1["rop"] = 0
+task_3_2 = copy.deepcopy(task_3_1)
+task_3_2["circulationTime"] = 500
+task_3_2["rpm"] = 50
+task_3_3 = copy.deepcopy(task_3_2)
+task_3_3["circulationTime"] = 600
+task_3_3["rpm"] = 75
