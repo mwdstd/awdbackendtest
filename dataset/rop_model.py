@@ -5,12 +5,12 @@ task = {
     "units": units,
     "bit": {
         "diameter": 0.220,  # m, bit diameter
-        "cutterCount": 50,  # total cutter counts
-        "cutterRadius": 6.5e-3,  # m, cutter radii
-        "sideRakeAngle": 30 * pi / 180,  # rad, alpha angle
-        "backRakeAngle": 30 * pi / 180,  # rad, teta angle
+        "cutterCount": 50,  # number of cutters
+        "cutterDiameter": 13e-3,  # m, cutter diameter
+        "sideRakeAngle": 30,  # deg, alpha angle
+        "backRakeAngle": 30,  # deg, teta angle
         "cutterWear": 2e-4,  # m, height of cutters' wear
-        "cutterWearCoefficient": 2e-19,  # m3 / N / m
+        "cutterWearFactor": 2e-19,  # m3 / N / m
         "frictionFactor": 0.2,  # unitless, friction factor between the cutter and formation
         "ropCorrectionCoefficient": 1  # ROP model calibration coefficient, specific for bit model
     },
@@ -22,7 +22,7 @@ task = {
     },
     "motor": {
         "diffPressureOffset": 2.4e6,  # Pa
-        "speedToFlow": 90,  # rev/m3
+        "revolutionsPerFlowVolume": 90,  # rev/m3
         "torqueToPressure": 750  # Pa/N/m
     },
     "surfaceRpm": 60,
