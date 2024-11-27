@@ -26,7 +26,7 @@ task = {
         "torqueToPressure": 750  # Pa/N/m
     },
     "surfaceRpm": 60,
-    "weightOnBit": 150000,  # N
+    "weightOnBit": 15,  # t
     "flowRate": 0.02,  # m3/s
     "drilledDistance": 100  # m
 }
