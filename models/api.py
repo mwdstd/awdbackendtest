@@ -3,7 +3,7 @@ import json
 from .tkn import get_token
 
 
-base_url = 'http://localhost:8000/calc/'
+base_url = 'https://aide.mwdstd.com/api/calc/'
 tkn = "Bearer " + get_token()
 headers = {
     'accept': 'application/json',
