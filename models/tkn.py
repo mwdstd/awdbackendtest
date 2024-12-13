@@ -4,7 +4,7 @@ from Tools.scripts.fixdiv import report
 def get_token():
     rq = '''username=guest&password=1'''
 
-    url = 'http://localhost:8000/auth/token'
+    url = 'https://aide.mwdstd.com/api/auth/token'
 
     headers = {
         'accept': 'application/json',
