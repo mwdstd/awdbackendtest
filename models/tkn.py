@@ -1,10 +1,12 @@
 import requests
 from Tools.scripts.fixdiv import report
 
+local = False
+
 def get_token():
     rq = '''username=guest&password=1'''
 
-    url = 'https://aide.mwdstd.com/api/auth/token'
+    url = 'https://aide.mwdstd.com/api/auth/token' if not local else 'http://127.0.0.1:8000/auth/token'
 
     headers = {
         'accept': 'application/json',
